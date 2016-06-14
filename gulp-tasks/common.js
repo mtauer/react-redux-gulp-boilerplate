@@ -13,6 +13,7 @@ export const paths = {
   },
   javascript: {
     input: input + 'js/',
+    inputFiles: input + 'js/**/*.{js,jsx}',
     inputMain: 'app.jsx',
     output: output + 'js/',
     outputMain: 'app.js',

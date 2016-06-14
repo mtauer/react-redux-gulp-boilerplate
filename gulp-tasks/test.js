@@ -4,7 +4,6 @@ import { paths } from './common'
 
 gulp.task('test', [], doTest)
 
-
 function doTest() {
   return gulp
     .src(paths.tests.inputFiles, { read: false })

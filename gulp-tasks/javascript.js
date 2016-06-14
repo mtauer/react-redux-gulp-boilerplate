@@ -9,13 +9,15 @@ import gulpIf from 'gulp-if'
 import gulpUtil from 'gulp-util'
 import gulpNotify from 'gulp-notify'
 import livereactload from 'livereactload'
+import gulpEslint from 'gulp-eslint'
 import { paths } from './common'
 
 const production = false
 const watch = true
 
-gulp.task('javascript:build', [], doJavascriptBuild)
-gulp.task('javascript:watch', [], doJavascriptWatch)
+gulp.task('javascript:build', ['javascript:lint'], doJavascriptBuild)
+gulp.task('javascript:watch', ['javascript:lint'], doJavascriptWatch)
+gulp.task('javascript:lint', [], doJavascriptLint)
 
 function doJavascriptBuild() {
   return bundleJavascript(createBundler())
@@ -24,7 +26,10 @@ function doJavascriptBuild() {
 function doJavascriptWatch() {
   const watcher = createBundler({ watch: true })
   bundleJavascript(watcher)
-  watcher.on('update', () => { bundleJavascript(watcher) })
+  watcher.on('update', () => {
+    doJavascriptLint()
+    bundleJavascript(watcher)
+  })
 }
 
 function createBundler(options = {}) {
@@ -67,4 +72,12 @@ const handleError = task => {
       return message
     }
   }
+}
+
+function doJavascriptLint() {
+  return gulp.src(paths.javascript.inputFiles)
+    .on('error', handleError('ESLint'))
+    .pipe(gulpEslint())
+    .pipe(gulpEslint.format())
+    .pipe(gulpEslint.failOnError());
 }
