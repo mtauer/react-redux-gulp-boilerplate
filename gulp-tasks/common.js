@@ -11,6 +11,10 @@ export const paths = {
     output: output + 'css/',
     outputFile: 'app.css',
   },
+  staticFiles: {
+    input: [input + '**/*.{html,svg,jpg,png,woff}'],
+    output,
+  }
 }
 
 export const env = [
