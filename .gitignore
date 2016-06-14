@@ -1,2 +1,4 @@
 node_modules
 public
+.awspublish-*
+config/configS3.js
