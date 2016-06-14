@@ -15,13 +15,16 @@ export const paths = {
     input: input + 'js/',
     inputMain: 'app.jsx',
     output: output + 'js/',
-    outputMain: 'app.js'
+    outputMain: 'app.js',
   },
   staticFiles: {
     input: [input + '**/*.{html,svg,jpg,png,woff}'],
     output,
   },
-
+  tests: {
+    input: 'test',
+    inputFiles: 'test/**/*.js',
+  },
 }
 
 export const env = [
