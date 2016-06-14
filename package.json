@@ -1,7 +1,7 @@
 {
   "name": "gulp_project",
   "version": "0.1.0",
-  "description": "Hello world app plus development gulp tasks",
+  "description": "Hello world app (React/Redux) plus development gulp tasks",
   "main": "index.js",
   "scripts": {
     "start": "gulp",
